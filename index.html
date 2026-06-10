@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Plataforma web do curso Jornada de Crescimento com Propósito."
+    />
+    <title>Jornada de Crescimento com Propósito</title>
+    <link rel="preload" href="assets/hero-course.png" as="image" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+    <header class="topbar">
+      <a class="brand" href="#inicio" data-nav>
+        <span class="brand-mark" aria-hidden="true">J</span>
+        <span>
+          <strong>Jornada de Crescimento</strong>
+          <small>com Propósito</small>
+        </span>
+      </a>
+
+      <nav class="topnav" aria-label="Navegação principal">
+        <a href="#modulos" data-nav>Módulos</a>
+        <a href="#biblioteca" data-nav>Biblioteca</a>
+        <a href="#prova" data-nav>Prova Final</a>
+        <a href="#certificado" data-nav>Certificado</a>
+      </nav>
+
+      <button
+        class="btn btn-secondary btn-compact"
+        id="resetProgress"
+        type="button"
+      >
+        Reiniciar
+      </button>
+    </header>
+
+    <nav class="side-rail" aria-label="Menu da plataforma">
+      <a href="#inicio" data-nav><span aria-hidden="true">01</span> Início</a>
+      <a href="#modulos" data-nav><span aria-hidden="true">02</span> Módulos</a>
+      <a href="#biblioteca" data-nav
+        ><span aria-hidden="true">03</span> Biblioteca</a
+      >
+      <a href="#prova" data-nav><span aria-hidden="true">04</span> Prova</a>
+      <a href="#certificado" data-nav
+        ><span aria-hidden="true">05</span> Certificado</a
+      >
+    </nav>
+
+    <main class="app-shell" id="conteudo">
+      <section
+        class="hero section-block"
+        id="inicio"
+        aria-labelledby="hero-title"
+      >
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-copy">
+            <p class="eyebrow">Plataforma de formação pessoal e espiritual</p>
+            <h1 id="hero-title">Jornada de Crescimento com Propósito</h1>
+            <p class="hero-lead">
+              Uma trilha prática para fortalecer identidade, disciplina, fé,
+              finanças, família, emoções, liderança e serviço ao próximo.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" id="startCourse" type="button">
+                Começar Curso
+              </button>
+              <a class="btn btn-secondary" href="#biblioteca" data-nav
+                >Ver Biblioteca</a
+              >
+            </div>
+          </div>
+
+          <aside class="progress-console" aria-label="Progresso geral do curso">
+            <div class="console-header">
+              <span>Progresso geral</span>
+              <strong id="progressPercent">0%</strong>
+            </div>
+            <div
+              class="progress-track"
+              role="progressbar"
+              aria-label="Progresso dos módulos"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+              id="progressBar"
+            >
+              <span></span>
+            </div>
+            <div class="status-grid">
+              <div>
+                <span>Módulos</span>
+                <strong id="moduleCounter">0/8</strong>
+              </div>
+              <div>
+                <span>Prova</span>
+                <strong id="examStatus">Bloqueada</strong>
+              </div>
+              <div>
+                <span>Certificado</span>
+                <strong id="certificateStatus">Bloqueado</strong>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section
+        class="section-block modules-section"
+        id="modulos"
+        aria-labelledby="modules-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">Trilha principal</p>
+          <h2 id="modules-title">Módulos do curso</h2>
+          <p>
+            Avance em sequência e consolide fundamentos de caráter, sabedoria,
+            maturidade emocional e serviço.
+          </p>
+        </div>
+
+        <div class="module-grid" id="moduleGrid" aria-live="polite"></div>
+      </section>
+
+      <section
+        class="section-block module-room"
+        id="sala-modulo"
+        aria-labelledby="room-title"
+      >
+        <div class="room-layout">
+          <div>
+            <p class="eyebrow">Sala do módulo</p>
+            <h2 id="room-title">Selecione um módulo disponível</h2>
+            <p id="roomDescription">
+              A área de aula exibirá o foco do módulo, sua referência bíblica e
+              a ação para concluir a etapa atual.
+            </p>
+          </div>
+
+          <div class="lesson-panel">
+            <div class="panel-line">
+              <span>Referência</span>
+              <strong id="roomVerse">-</strong>
+            </div>
+            <div class="panel-line">
+              <span>Foco prático</span>
+              <strong id="roomFocus">-</strong>
+            </div>
+            <button
+              class="btn btn-primary"
+              id="completeCurrentModule"
+              type="button"
+              disabled
+            >
+              Concluir módulo
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section-block library-section"
+        id="biblioteca"
+        aria-labelledby="library-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">Biblioteca</p>
+          <h2 id="library-title">Materiais de apoio</h2>
+          <p>
+            Leituras, roteiros e ferramentas práticas para aprofundar cada
+            disciplina da jornada.
+          </p>
+        </div>
+
+        <div class="library-grid">
+          <article class="resource-card">
+            <span class="resource-type">Guia</span>
+            <h3>Plano semanal de hábitos</h3>
+            <p>Rotina de disciplina, oração, estudo e revisão de metas.</p>
+          </article>
+          <article class="resource-card">
+            <span class="resource-type">Caderno</span>
+            <h3>Identidade e propósito</h3>
+            <p>Perguntas de reflexão para clarear valores, dons e direção.</p>
+          </article>
+          <article class="resource-card">
+            <span class="resource-type">Planilha</span>
+            <h3>Finanças com sabedoria</h3>
+            <p>
+              Mapa simples para orçamento, generosidade, dívidas e reservas.
+            </p>
+          </article>
+          <article class="resource-card">
+            <span class="resource-type">Roteiro</span>
+            <h3>Família e honra</h3>
+            <p>Práticas de comunicação, reconciliação e serviço no lar.</p>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="section-block exam-section"
+        id="prova"
+        aria-labelledby="exam-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">Avaliação</p>
+          <h2 id="exam-title">Prova final</h2>
+          <p>
+            A avaliação final consolida os principais aprendizados da trilha e
+            habilita a emissão do certificado.
+          </p>
+        </div>
+
+        <div class="exam-console" id="examConsole">
+          <div class="exam-status-line">
+            <span class="status-pill status-locked" id="examPill"
+              >Bloqueada</span
+            >
+            <strong id="examMessage"
+              >Conclua todos os módulos para liberar a prova.</strong
+            >
+          </div>
+
+          <div
+            class="exam-structure"
+            aria-label="Estrutura visual da prova final"
+          >
+            <div>
+              <span>Bloco 1</span>
+              <strong>Identidade, mente e hábitos</strong>
+            </div>
+            <div>
+              <span>Bloco 2</span>
+              <strong>Emoções, finanças e família</strong>
+            </div>
+            <div>
+              <span>Bloco 3</span>
+              <strong>Liderança, serviço e missão</strong>
+            </div>
+          </div>
+
+          <button
+            class="btn btn-primary"
+            id="approveExam"
+            type="button"
+            disabled
+          >
+            Registrar aprovação
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="section-block certificate-section"
+        id="certificado"
+        aria-labelledby="certificate-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">Conclusão</p>
+          <h2 id="certificate-title">Certificado</h2>
+          <p id="certificateMessage">
+            O certificado será liberado após aprovação na prova final.
+          </p>
+        </div>
+
+        <div
+          class="certificate-preview"
+          id="certificatePreview"
+          aria-live="polite"
+        >
+          <div class="certificate-border">
+            <span class="certificate-label">Certificado</span>
+            <h3>Jornada de Crescimento com Propósito</h3>
+            <p id="certificateText">
+              Bloqueado até a aprovação na prova final.
+            </p>
+            <span class="certificate-seal" aria-hidden="true">JG</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Jornada de Crescimento com Propósito - base inicial em HTML, CSS e
+        JavaScript puro.
+      </p>
+    </footer>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
