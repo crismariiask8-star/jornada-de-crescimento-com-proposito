@@ -25,6 +25,7 @@
 
       <nav class="topnav" aria-label="Navegação principal">
         <a href="#modulos" data-nav>Módulos</a>
+        <a href="#sala-aula" data-nav>Sala de Aula</a>
         <a href="#biblioteca" data-nav>Biblioteca</a>
         <a href="#prova" data-nav>Prova Final</a>
         <a href="#certificado" data-nav>Certificado</a>
@@ -42,12 +43,13 @@
     <nav class="side-rail" aria-label="Menu da plataforma">
       <a href="#inicio" data-nav><span aria-hidden="true">01</span> Início</a>
       <a href="#modulos" data-nav><span aria-hidden="true">02</span> Módulos</a>
+      <a href="#sala-aula" data-nav><span aria-hidden="true">03</span> Sala</a>
       <a href="#biblioteca" data-nav
-        ><span aria-hidden="true">03</span> Biblioteca</a
+        ><span aria-hidden="true">04</span> Biblioteca</a
       >
-      <a href="#prova" data-nav><span aria-hidden="true">04</span> Prova</a>
+      <a href="#prova" data-nav><span aria-hidden="true">05</span> Prova</a>
       <a href="#certificado" data-nav
-        ><span aria-hidden="true">05</span> Certificado</a
+        ><span aria-hidden="true">06</span> Certificado</a
       >
     </nav>
 
@@ -84,7 +86,7 @@
             <div
               class="progress-track"
               role="progressbar"
-              aria-label="Progresso dos módulos"
+              aria-label="Progresso das aulas"
               aria-valuemin="0"
               aria-valuemax="100"
               aria-valuenow="0"
@@ -96,6 +98,10 @@
               <div>
                 <span>Módulos</span>
                 <strong id="moduleCounter">0/8</strong>
+              </div>
+              <div>
+                <span>Aulas</span>
+                <strong id="lessonCounter">0/24</strong>
               </div>
               <div>
                 <span>Prova</span>
@@ -128,38 +134,120 @@
       </section>
 
       <section
-        class="section-block module-room"
-        id="sala-modulo"
-        aria-labelledby="room-title"
+        class="section-block classroom-section"
+        id="sala-aula"
+        aria-labelledby="classroom-title"
       >
-        <div class="room-layout">
-          <div>
-            <p class="eyebrow">Sala do módulo</p>
-            <h2 id="room-title">Selecione um módulo disponível</h2>
-            <p id="roomDescription">
-              A área de aula exibirá o foco do módulo, sua referência bíblica e
-              a ação para concluir a etapa atual.
-            </p>
-          </div>
+        <div class="section-heading classroom-heading">
+          <p class="eyebrow">Área de Estudo</p>
+          <h2 id="classroom-title">Sala de Aula</h2>
+          <p id="classroomDescription">
+            Acesse um módulo disponível para visualizar as aulas, avançar pela
+            trilha e registrar sua conclusão.
+          </p>
+        </div>
 
-          <div class="lesson-panel">
-            <div class="panel-line">
-              <span>Referência</span>
-              <strong id="roomVerse">-</strong>
+        <div class="classroom-layout" aria-label="Sala de aula do curso">
+          <aside
+            class="lesson-sidebar"
+            aria-label="Aulas do módulo selecionado"
+          >
+            <div class="classroom-module-summary">
+              <span id="classroomModuleNumber">Módulo</span>
+              <h3 id="classroomModuleTitle">Nenhum módulo selecionado</h3>
+              <p id="classroomModuleDescription">
+                Clique em “Acessar módulo” para abrir a área de estudo.
+              </p>
+
+              <div class="module-progress-box">
+                <div class="console-header">
+                  <span>Progresso do módulo</span>
+                  <strong id="moduleProgressPercent">0%</strong>
+                </div>
+                <div
+                  class="progress-track progress-track-small"
+                  role="progressbar"
+                  aria-label="Progresso do módulo selecionado"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="0"
+                  id="moduleProgressBar"
+                >
+                  <span></span>
+                </div>
+                <p id="moduleLessonCounter">0 de 3 aulas concluídas</p>
+              </div>
             </div>
-            <div class="panel-line">
-              <span>Foco prático</span>
-              <strong id="roomFocus">-</strong>
+
+            <div class="lesson-list" id="lessonList" aria-live="polite"></div>
+          </aside>
+
+          <article class="lesson-content-panel" aria-live="polite">
+            <div class="lesson-content-header">
+              <span class="status-pill status-locked" id="lessonStatusPill"
+                >Pendente</span
+              >
+              <p class="eyebrow" id="lessonKicker">Aula selecionada</p>
+              <h3 id="lessonTitle">Selecione uma aula</h3>
+              <p id="lessonSummary">
+                O conteúdo da aula aparecerá aqui com fundamento, prática e
+                reflexão.
+              </p>
             </div>
-            <button
-              class="btn btn-primary"
-              id="completeCurrentModule"
-              type="button"
-              disabled
-            >
-              Concluir módulo
-            </button>
-          </div>
+
+            <div class="lesson-body">
+              <div class="panel-line">
+                <span>Referência bíblica</span>
+                <strong id="lessonVerse">-</strong>
+              </div>
+              <div class="lesson-text" id="lessonText">
+                <p>
+                  Abra um módulo disponível e escolha uma aula para começar seus
+                  estudos.
+                </p>
+              </div>
+              <div class="reflection-box">
+                <span>Pergunta de reflexão</span>
+                <p id="lessonQuestion">
+                  Qual próximo passo prático você deseja assumir nesta jornada?
+                </p>
+              </div>
+            </div>
+
+            <div class="lesson-actions">
+              <button
+                class="btn btn-secondary"
+                id="previousLesson"
+                type="button"
+                disabled
+              >
+                Aula anterior
+              </button>
+              <button
+                class="btn btn-primary"
+                id="completeCurrentLesson"
+                type="button"
+                disabled
+              >
+                Marcar aula como concluída
+              </button>
+              <button
+                class="btn btn-secondary"
+                id="nextLesson"
+                type="button"
+                disabled
+              >
+                Próxima aula
+              </button>
+              <button
+                class="btn btn-secondary"
+                id="backToModules"
+                type="button"
+              >
+                Voltar aos módulos
+              </button>
+            </div>
+          </article>
         </div>
       </section>
 
