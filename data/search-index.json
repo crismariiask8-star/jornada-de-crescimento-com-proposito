@@ -1,0 +1,19 @@
+{
+  "records": [
+    {
+      "type": "lesson",
+      "moduleId": "modulo-1-identidade-valor-proposito",
+      "lessonId": "aula-1-identidade-alem-performance",
+      "title": "Identidade além da performance",
+      "summary": "Aula demonstrativa sobre identidade, valor e desempenho.",
+      "tags": ["identidade", "performance", "valor"]
+    },
+    {
+      "type": "library",
+      "categoryId": "psicologia",
+      "title": "Crenças centrais e identidade",
+      "summary": "Tema de estudo da Biblioteca Premium.",
+      "tags": ["psicologia", "crenças", "identidade"]
+    }
+  ]
+}

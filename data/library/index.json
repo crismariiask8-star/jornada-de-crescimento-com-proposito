@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "id": "psicologia",
+      "title": "Psicologia",
+      "description": "Recursos sobre cognição, crenças, emoções, comportamento e desenvolvimento humano.",
+      "resources": [
+        {
+          "title": "Crenças centrais e identidade",
+          "type": "Tema de estudo",
+          "tags": ["crenças", "identidade", "cognição"]
+        }
+      ]
+    },
+    {
+      "id": "neurociencia",
+      "title": "Neurociência",
+      "description": "Materiais sobre aprendizagem, hábitos, atenção, emoção e tomada de decisão.",
+      "resources": [
+        {
+          "title": "Neuroplasticidade e formação de hábitos",
+          "type": "Tema de estudo",
+          "tags": ["neuroplasticidade", "hábitos"]
+        }
+      ]
+    }
+  ]
+}

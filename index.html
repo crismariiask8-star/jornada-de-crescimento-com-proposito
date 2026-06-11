@@ -26,7 +26,9 @@
       <nav class="topnav" aria-label="Navegação principal">
         <a href="#modulos" data-nav>Módulos</a>
         <a href="#sala-aula" data-nav>Sala de Aula</a>
+        <a href="#busca" data-nav>Busca</a>
         <a href="#biblioteca" data-nav>Biblioteca</a>
+        <a href="#projeto-final" data-nav>Projeto Final</a>
         <a href="#prova" data-nav>Prova Final</a>
         <a href="#certificado" data-nav>Certificado</a>
       </nav>
@@ -44,12 +46,16 @@
       <a href="#inicio" data-nav><span aria-hidden="true">01</span> Início</a>
       <a href="#modulos" data-nav><span aria-hidden="true">02</span> Módulos</a>
       <a href="#sala-aula" data-nav><span aria-hidden="true">03</span> Sala</a>
+      <a href="#busca" data-nav><span aria-hidden="true">04</span> Busca</a>
       <a href="#biblioteca" data-nav
-        ><span aria-hidden="true">04</span> Biblioteca</a
+        ><span aria-hidden="true">05</span> Biblioteca</a
       >
-      <a href="#prova" data-nav><span aria-hidden="true">05</span> Prova</a>
+      <a href="#projeto-final" data-nav
+        ><span aria-hidden="true">06</span> Projeto</a
+      >
+      <a href="#prova" data-nav><span aria-hidden="true">07</span> Prova</a>
       <a href="#certificado" data-nav
-        ><span aria-hidden="true">06</span> Certificado</a
+        ><span aria-hidden="true">08</span> Certificado</a
       >
     </nav>
 
@@ -187,6 +193,14 @@
               <span class="status-pill status-locked" id="lessonStatusPill"
                 >Pendente</span
               >
+              <button
+                class="btn btn-secondary btn-compact"
+                id="favoriteLesson"
+                type="button"
+                disabled
+              >
+                Favoritar aula
+              </button>
               <p class="eyebrow" id="lessonKicker">Aula selecionada</p>
               <h3 id="lessonTitle">Selecione uma aula</h3>
               <p id="lessonSummary">
@@ -247,7 +261,88 @@
                 Voltar aos módulos
               </button>
             </div>
+
+            <div class="student-tools">
+              <section class="tool-panel" aria-labelledby="notes-title">
+                <h4 id="notes-title">Anotações do aluno</h4>
+                <textarea
+                  id="lessonNotes"
+                  rows="6"
+                  placeholder="Registre observações, dúvidas e aplicações pessoais desta aula."
+                ></textarea>
+                <button
+                  class="btn btn-secondary"
+                  id="saveNotes"
+                  type="button"
+                  disabled
+                >
+                  Salvar anotações
+                </button>
+              </section>
+
+              <section class="tool-panel" aria-labelledby="favorites-title">
+                <h4 id="favorites-title">Favoritos</h4>
+                <div
+                  id="favoritesList"
+                  class="compact-list"
+                  aria-live="polite"
+                ></div>
+              </section>
+
+              <section
+                class="tool-panel tool-panel-wide"
+                aria-labelledby="quiz-title"
+              >
+                <h4 id="quiz-title">Quiz da aula</h4>
+                <div id="lessonQuiz" aria-live="polite">
+                  Selecione uma aula para carregar o quiz.
+                </div>
+              </section>
+            </div>
           </article>
+        </div>
+
+        <div class="module-assessment" id="moduleAssessment">
+          <div>
+            <p class="eyebrow">Avaliação por módulo</p>
+            <h3 id="moduleAssessmentTitle">Avaliação indisponível</h3>
+            <p id="moduleAssessmentStatus">
+              Abra um módulo com avaliação configurada para responder.
+            </p>
+          </div>
+          <div id="moduleAssessmentQuiz" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section
+        class="section-block search-section"
+        id="busca"
+        aria-labelledby="search-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">Busca Global</p>
+          <h2 id="search-title">Encontrar conteúdos</h2>
+          <p>
+            Pesquise aulas, módulos, biblioteca e temas indexados pelos arquivos
+            JSON da plataforma.
+          </p>
+        </div>
+
+        <div class="search-console">
+          <label class="search-label" for="globalSearch"
+            >Buscar na plataforma</label
+          >
+          <input
+            id="globalSearch"
+            type="search"
+            placeholder="Digite identidade, hábitos, liderança..."
+            autocomplete="off"
+          />
+          <div
+            class="search-results"
+            id="searchResults"
+            aria-live="polite"
+          ></div>
         </div>
       </section>
 
@@ -265,29 +360,31 @@
           </p>
         </div>
 
-        <div class="library-grid">
-          <article class="resource-card">
-            <span class="resource-type">Guia</span>
-            <h3>Plano semanal de hábitos</h3>
-            <p>Rotina de disciplina, oração, estudo e revisão de metas.</p>
-          </article>
-          <article class="resource-card">
-            <span class="resource-type">Caderno</span>
-            <h3>Identidade e propósito</h3>
-            <p>Perguntas de reflexão para clarear valores, dons e direção.</p>
-          </article>
-          <article class="resource-card">
-            <span class="resource-type">Planilha</span>
-            <h3>Finanças com sabedoria</h3>
-            <p>
-              Mapa simples para orçamento, generosidade, dívidas e reservas.
-            </p>
-          </article>
-          <article class="resource-card">
-            <span class="resource-type">Roteiro</span>
-            <h3>Família e honra</h3>
-            <p>Práticas de comunicação, reconciliação e serviço no lar.</p>
-          </article>
+        <div class="library-grid" id="libraryGrid" aria-live="polite"></div>
+      </section>
+
+      <section
+        class="section-block project-section"
+        id="projeto-final"
+        aria-labelledby="project-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">Projeto Final</p>
+          <h2 id="project-title">Transformação Integral</h2>
+          <p id="projectDescription">
+            Estrutura dinâmica para consolidar os planos finais do aluno.
+          </p>
+        </div>
+
+        <div class="project-console">
+          <div
+            class="project-grid"
+            id="projectSections"
+            aria-live="polite"
+          ></div>
+          <button class="btn btn-primary" id="completeProject" type="button">
+            Marcar projeto final como concluído
+          </button>
         </div>
       </section>
 

@@ -1,356 +1,40 @@
-const STORAGE_KEY = "jornadaCrescimentoProposito:v2";
-const LEGACY_STORAGE_KEY = "jornadaCrescimentoProposito:v1";
+const STORAGE_KEY = "jornadaLmsState:v1";
+const MODULES_MANIFEST = "data/modules/index.json";
+const LIBRARY_INDEX = "data/library/index.json";
+const SEARCH_INDEX = "data/search-index.json";
+const PROJECT_FINAL = "data/project-final.json";
+const CERTIFICATE_CONFIG = "data/certificates/config.json";
 
-const modules = [
-  {
-    id: "identidade-proposito",
-    title: "Identidade e Propósito",
-    description:
-      "Fundamentos para reconhecer valor, vocação e direção a partir da identidade em Deus.",
-    verse: "Efésios 2:10",
-    focus: "Clareza de identidade, dons e propósito pessoal.",
-    lessons: [
-      {
-        id: "fundamento",
-        title: "Aula 1: Fundamento",
-        summary:
-          "Compreenda identidade como ponto de partida para uma vida com propósito.",
-        content:
-          "Identidade não começa no desempenho, na opinião das pessoas ou nas conquistas visíveis. Na perspectiva cristã, ela nasce da convicção de que fomos criados por Deus com valor, dignidade e responsabilidade.\n\nQuando a identidade está confusa, o propósito vira pressão. Quando a identidade está firmada, o propósito se torna resposta: vivemos para honrar a Deus com quem somos, com o que temos e com o modo como servimos.",
-        verse: "Efésios 2:10",
-        question:
-          "Que rótulo ou expectativa externa você precisa deixar de usar como medida da sua identidade?",
-      },
-      {
-        id: "aplicacao",
-        title: "Aula 2: Aplicação prática",
-        summary:
-          "Transforme identidade em decisões, prioridades e postura diária.",
-        content:
-          "Propósito se torna concreto quando aparece na agenda, nas escolhas e na maneira como lidamos com responsabilidades. Uma pessoa que sabe quem é consegue dizer sim com direção e não com paz.\n\nNesta semana, observe três áreas: tempo, relacionamentos e trabalho. Pergunte se suas escolhas refletem medo de aprovação ou fidelidade ao chamado que Deus tem amadurecido em você.",
-        verse: "Colossenses 3:23",
-        question:
-          "Qual decisão simples desta semana pode alinhar melhor sua rotina ao propósito que você reconhece?",
-      },
-      {
-        id: "reflexao",
-        title: "Aula 3: Exercício de reflexão",
-        summary: "Escreva uma declaração pessoal de identidade e propósito.",
-        content:
-          "Reserve alguns minutos em silêncio e escreva uma declaração curta começando com: “Eu sou...” e “Fui chamado para...”. Evite frases genéricas. Use palavras que expressem caráter, serviço, dons e responsabilidades reais.\n\nDepois, transforme essa declaração em uma prática: uma conversa que precisa ser honesta, um compromisso que precisa ser assumido ou um limite que precisa ser estabelecido.",
-        verse: "Jeremias 1:5",
-        question:
-          "Qual frase resumiria, com humildade e clareza, quem você entende que Deus está formando em você?",
-      },
-    ],
-  },
-  {
-    id: "disciplina-habitos",
-    title: "Disciplina e Hábitos",
-    description:
-      "Práticas consistentes para transformar intenção em maturidade, rotina e perseverança.",
-    verse: "1 Coríntios 9:25",
-    focus: "Ritmos semanais, constância e domínio próprio.",
-    lessons: [
-      {
-        id: "fundamento",
-        title: "Aula 1: Fundamento",
-        summary:
-          "Veja disciplina como mordomia da vida, não como rigidez sem alma.",
-        content:
-          "Disciplina cristã não é tentativa de provar valor. É resposta madura a um Deus que nos confiou tempo, corpo, mente e oportunidades. Hábitos são pequenas liturgias: repetimos algo até que isso forme nossos desejos e decisões.\n\nUma vida sem ritmo fica refém da urgência. Uma vida com bons hábitos cria espaço para oração, estudo, trabalho responsável, descanso e serviço.",
-        verse: "1 Coríntios 9:25",
-        question:
-          "Em qual área a falta de rotina tem custado mais energia espiritual, emocional ou prática?",
-      },
-      {
-        id: "aplicacao",
-        title: "Aula 2: Aplicação prática",
-        summary:
-          "Construa um ciclo simples de hábito com gatilho, ação e revisão.",
-        content:
-          "Escolha um hábito pequeno o suficiente para ser repetido por sete dias. Defina um gatilho claro, como “após acordar” ou “antes de dormir”, e uma ação objetiva, como dez minutos de leitura bíblica, planejamento ou exercício.\n\nAo final do dia, registre apenas duas coisas: se cumpriu e o que dificultou. A revisão honesta evita culpa improdutiva e transforma tropeços em aprendizagem.",
-        verse: "Provérbios 21:5",
-        question:
-          "Qual hábito pequeno, se repetido por uma semana, poderia mudar seu senso de direção?",
-      },
-      {
-        id: "reflexao",
-        title: "Aula 3: Exercício de reflexão",
-        summary:
-          "Identifique o hábito que precisa ser protegido e o que precisa ser abandonado.",
-        content:
-          "Faça duas listas curtas: hábitos que fortalecem sua fé e hábitos que drenam seu foco. Não escreva para se condenar; escreva para enxergar padrões.\n\nDepois escolha uma troca prática: reduzir uma distração e inserir uma prática formativa no lugar. Disciplina cresce melhor quando existe substituição sábia, não apenas proibição.",
-        verse: "Hebreus 12:11",
-        question:
-          "Qual troca de hábito seria um ato concreto de domínio próprio hoje?",
-      },
-    ],
-  },
-  {
-    id: "renovacao-mente",
-    title: "Renovação da Mente",
-    description:
-      "Caminhos para substituir padrões limitantes por pensamentos alinhados à verdade.",
-    verse: "Romanos 12:2",
-    focus: "Mentalidade, discernimento e tomada de decisão.",
-    lessons: [
-      {
-        id: "fundamento",
-        title: "Aula 1: Fundamento",
-        summary:
-          "Entenda a renovação da mente como processo espiritual e prático.",
-        content:
-          "A mente é um campo de interpretação. Ela atribui significado ao que vivemos, decide o que tememos e alimenta o que buscamos. Por isso, Romanos 12 fala de transformação pela renovação da mente.\n\nRenovar a mente não é negar problemas. É aprender a discernir pensamentos, confrontar mentiras e receber a verdade de Deus como base para decisões mais maduras.",
-        verse: "Romanos 12:2",
-        question:
-          "Qual pensamento repetido tem guiado suas decisões sem ser confrontado pela verdade?",
-      },
-      {
-        id: "aplicacao",
-        title: "Aula 2: Aplicação prática",
-        summary:
-          "Use um roteiro simples para avaliar pensamentos e responder com verdade.",
-        content:
-          "Quando perceber ansiedade, comparação ou desânimo, pare e nomeie o pensamento principal. Em seguida, pergunte: isso é verdadeiro, completo e coerente com o caráter de Deus?\n\nDepois escreva uma resposta bíblica e uma ação pequena. A mente é renovada quando a verdade deixa de ser apenas ideia e se torna direção prática.",
-        verse: "Filipenses 4:8",
-        question:
-          "Que verdade bíblica você precisa declarar antes de tomar sua próxima decisão importante?",
-      },
-      {
-        id: "reflexao",
-        title: "Aula 3: Exercício de reflexão",
-        summary: "Mapeie um padrão mental e escolha uma resposta renovada.",
-        content:
-          "Descreva uma situação recente em que você reagiu de forma automática. Identifique o pensamento, a emoção, a reação e a consequência. Esse mapa revela o caminho interno que precisa de renovação.\n\nAgora escreva uma nova resposta: pensamento alinhado à verdade, emoção acolhida com maturidade e ação obediente. Pratique essa resposta na próxima oportunidade.",
-        verse: "2 Coríntios 10:5",
-        question:
-          "Qual reação automática você deseja substituir por uma resposta mais sábia?",
-      },
-    ],
-  },
-  {
-    id: "inteligencia-emocional-crista",
-    title: "Inteligência Emocional Cristã",
-    description:
-      "Maturidade para lidar com emoções, conflitos, ansiedade e pressões com sabedoria.",
-    verse: "Provérbios 4:23",
-    focus: "Autoconsciência, domínio emocional e restauração.",
-    lessons: [
-      {
-        id: "fundamento",
-        title: "Aula 1: Fundamento",
-        summary:
-          "Aprenda a tratar emoções como sinais que precisam de cuidado e direção.",
-        content:
-          "Emoções não são inimigas da fé. Elas revelam desejos, dores, limites e necessidades. A maturidade cristã não anestesia sentimentos; ela os submete à presença de Deus e à sabedoria.\n\nGuardar o coração, como ensina Provérbios, não significa trancar tudo dentro. Significa vigiar o que entra, discernir o que governa e escolher respostas que preservem vida.",
-        verse: "Provérbios 4:23",
-        question:
-          "Qual emoção você costuma ignorar até que ela se transforme em reação desproporcional?",
-      },
-      {
-        id: "aplicacao",
-        title: "Aula 2: Aplicação prática",
-        summary:
-          "Use pausa, nomeação e resposta para lidar melhor com pressões.",
-        content:
-          "Antes de responder sob pressão, pratique três passos: pause, nomeie a emoção e escolha a resposta. Dizer “estou irritado”, “estou com medo” ou “estou frustrado” reduz o impulso de agir no automático.\n\nDepois pergunte: qual resposta honra a Deus, respeita pessoas e protege meu coração? Essa pergunta transforma emoção em oportunidade de maturidade.",
-        verse: "Tiago 1:19",
-        question:
-          "Em qual conversa você precisa praticar mais escuta antes de responder?",
-      },
-      {
-        id: "reflexao",
-        title: "Aula 3: Exercício de reflexão",
-        summary:
-          "Construa um plano pessoal para momentos de sobrecarga emocional.",
-        content:
-          "Escreva os sinais de que você está chegando ao limite: tom de voz, isolamento, pressa, pensamentos acelerados ou vontade de desistir. Depois defina uma resposta saudável para cada sinal.\n\nInclua oração breve, respiração, pedido de ajuda, conversa honesta ou descanso. Maturidade emocional também é humildade para reconhecer limites.",
-        verse: "Salmos 139:23-24",
-        question:
-          "Que sinal interno você precisa levar mais a sério antes de tomar decisões?",
-      },
-    ],
-  },
-  {
-    id: "financas-sabedoria",
-    title: "Finanças com Sabedoria",
-    description:
-      "Princípios para organizar recursos, praticar generosidade e construir estabilidade.",
-    verse: "Provérbios 21:5",
-    focus: "Orçamento, reservas, prioridades e contentamento.",
-    lessons: [
-      {
-        id: "fundamento",
-        title: "Aula 1: Fundamento",
-        summary:
-          "Enxergue finanças como mordomia, contentamento e responsabilidade.",
-        content:
-          "Dinheiro revela prioridades. A Bíblia trata finanças com seriedade porque recursos, desejos e segurança competem pelo coração. Sabedoria financeira começa quando reconhecemos Deus como fonte e nós como administradores.\n\nOrganização, generosidade e prudência não são temas separados da espiritualidade. Eles expressam confiança, domínio próprio e cuidado com o futuro.",
-        verse: "Provérbios 21:5",
-        question:
-          "O que seus gastos recentes revelam sobre suas prioridades e preocupações?",
-      },
-      {
-        id: "aplicacao",
-        title: "Aula 2: Aplicação prática",
-        summary: "Organize entradas, saídas, dívidas, generosidade e reserva.",
-        content:
-          "Faça um mapa simples: quanto entra, quanto sai, quanto está comprometido e quanto pode ser direcionado com intenção. Não comece tentando controlar tudo; comece enxergando a realidade com honestidade.\n\nDepois defina quatro destinos: necessidades, compromissos, generosidade e reserva. A clareza reduz ansiedade e abre caminho para decisões mais responsáveis.",
-        verse: "Lucas 14:28",
-        question:
-          "Qual número financeiro você precisa encarar com honestidade nesta semana?",
-      },
-      {
-        id: "reflexao",
-        title: "Aula 3: Exercício de reflexão",
-        summary:
-          "Defina uma decisão financeira alinhada a sabedoria e contentamento.",
-        content:
-          "Reflita sobre uma compra, dívida ou compromisso financeiro atual. Pergunte se essa decisão nasce de necessidade, vaidade, medo, pressão social ou propósito.\n\nEscolha uma atitude concreta: renegociar, cancelar, poupar, contribuir, planejar ou esperar. Esperar também pode ser uma forma madura de fé e sabedoria.",
-        verse: "1 Timóteo 6:6",
-        question:
-          "Qual decisão financeira mostraria contentamento e responsabilidade agora?",
-      },
-    ],
-  },
-  {
-    id: "familia-relacionamentos-honra",
-    title: "Família, Relacionamentos e Honra",
-    description:
-      "Bases para cultivar honra, reconciliação, presença e comunicação saudável.",
-    verse: "Romanos 12:10",
-    focus: "Relacionamentos, escuta, perdão e serviço no lar.",
-    lessons: [
-      {
-        id: "fundamento",
-        title: "Aula 1: Fundamento",
-        summary:
-          "Compreenda honra como postura ativa de valor, respeito e cuidado.",
-        content:
-          "Honra não é concordar com tudo nem esconder problemas. Honra é reconhecer valor, tratar pessoas com dignidade e buscar caminhos de paz sem abandonar a verdade.\n\nFamília e relacionamentos são ambientes onde o caráter é treinado todos os dias. A espiritualidade madura aparece no tom de voz, na escuta, no perdão e na disposição de servir.",
-        verse: "Romanos 12:10",
-        question:
-          "Em qual relacionamento sua postura precisa expressar mais honra e menos defesa?",
-      },
-      {
-        id: "aplicacao",
-        title: "Aula 2: Aplicação prática",
-        summary: "Pratique comunicação clara, escuta respeitosa e reparação.",
-        content:
-          "Escolha uma conversa importante e prepare três elementos: o fato observado, o sentimento envolvido e o pedido claro. Evite acusações globais como “você sempre” ou “você nunca”.\n\nHonra também exige escutar. Antes de responder, repita com suas palavras o que entendeu. Essa prática simples reduz ruído e abre espaço para reconciliação.",
-        verse: "Efésios 4:29",
-        question:
-          "Que conversa você precisa conduzir com mais clareza, mansidão e verdade?",
-      },
-      {
-        id: "reflexao",
-        title: "Aula 3: Exercício de reflexão",
-        summary:
-          "Identifique uma atitude de serviço que fortaleça um relacionamento.",
-        content:
-          "Pense em alguém próximo que precisa de presença, ajuda ou reconhecimento. Escreva uma forma prática de servir essa pessoa nos próximos dias sem esperar aplauso ou retorno imediato.\n\nO serviço cotidiano cura a indiferença. Pequenos atos de honra, quando repetidos, podem reconstruir confiança e tornar o lar um lugar mais saudável.",
-        verse: "Gálatas 5:13",
-        question:
-          "Qual ato de serviço concreto você pode praticar por alguém da sua casa ou círculo próximo?",
-      },
-    ],
-  },
-  {
-    id: "lideranca-servico",
-    title: "Liderança e Serviço",
-    description:
-      "Uma visão de liderança que começa no caráter e floresce no cuidado com pessoas.",
-    verse: "Marcos 10:45",
-    focus: "Influência, responsabilidade e serviço ao próximo.",
-    lessons: [
-      {
-        id: "fundamento",
-        title: "Aula 1: Fundamento",
-        summary:
-          "Redefina liderança como influência formada por caráter e serviço.",
-        content:
-          "Jesus apresenta uma liderança diferente da busca por posição. Liderar é assumir responsabilidade pelo bem de pessoas, usando influência para servir e não para controlar.\n\nAntes de liderar projetos, lideramos atitudes: pontualidade, palavra confiável, humildade para aprender e coragem para fazer o que é correto quando ninguém está vendo.",
-        verse: "Marcos 10:45",
-        question:
-          "Onde você já exerce influência e precisa tratá-la como responsabilidade espiritual?",
-      },
-      {
-        id: "aplicacao",
-        title: "Aula 2: Aplicação prática",
-        summary:
-          "Mapeie pessoas, necessidades e uma ação de liderança servidora.",
-        content:
-          "Liste três pessoas ou ambientes que são impactados por suas escolhas. Pergunte: o que essas pessoas precisam receber de mim com mais consistência, clareza ou cuidado?\n\nDepois escolha uma ação de liderança servidora: orientar alguém, resolver uma pendência, assumir uma responsabilidade ou reconhecer publicamente o esforço de outra pessoa.",
-        verse: "1 Pedro 4:10",
-        question:
-          "Qual responsabilidade você tem evitado que poderia se tornar serviço ao próximo?",
-      },
-      {
-        id: "reflexao",
-        title: "Aula 3: Exercício de reflexão",
-        summary: "Avalie motivações e defina um padrão de liderança saudável.",
-        content:
-          "Reflita sobre suas motivações: você deseja liderar para ser visto, para controlar ou para contribuir? Todos enfrentamos misturas internas, e reconhecer isso é parte da formação do caráter.\n\nEscreva um padrão pessoal de liderança: como você deseja tratar pessoas, tomar decisões e lidar com erros. Esse padrão servirá como régua quando a pressão aumentar.",
-        verse: "Filipenses 2:3-4",
-        question:
-          "Qual motivação precisa ser purificada para que sua liderança sirva melhor?",
-      },
-    ],
-  },
-  {
-    id: "chamado-missao-futuro",
-    title: "Chamado, Missão e Futuro",
-    description:
-      "Integração da jornada para viver com direção, coragem e impacto no longo prazo.",
-    verse: "Filipenses 3:14",
-    focus: "Missão pessoal, legado e próximos passos.",
-    lessons: [
-      {
-        id: "fundamento",
-        title: "Aula 1: Fundamento",
-        summary:
-          "Entenda chamado como fidelidade progressiva, não apenas um grande evento.",
-        content:
-          "Chamado não é somente uma resposta dramática sobre o futuro. Muitas vezes ele se revela na fidelidade às responsabilidades de hoje, no amadurecimento do caráter e na disposição de servir onde Deus já nos colocou.\n\nMissão integra dons, dores, oportunidades e obediência. O futuro é construído por pequenas decisões fiéis repetidas ao longo do tempo.",
-        verse: "Filipenses 3:14",
-        question:
-          "Que responsabilidade atual pode estar formando você para uma missão maior?",
-      },
-      {
-        id: "aplicacao",
-        title: "Aula 2: Aplicação prática",
-        summary: "Transforme visão de futuro em próximos passos mensuráveis.",
-        content:
-          "Escreva uma visão simples para os próximos doze meses em quatro áreas: fé, família, trabalho/estudos e serviço. Depois escolha um próximo passo para cada área.\n\nEvite metas grandiosas sem rotina. Uma visão cristã de futuro precisa de oração, conselho, planejamento e coragem para obedecer no que já está claro.",
-        verse: "Habacuque 2:2",
-        question:
-          "Qual próximo passo mensurável aproxima sua vida da missão que você deseja viver?",
-      },
-      {
-        id: "reflexao",
-        title: "Aula 3: Exercício de reflexão",
-        summary:
-          "Faça uma síntese da jornada e defina seu compromisso de continuidade.",
-        content:
-          "Revise os oito módulos e escreva três aprendizados que você não quer perder. Em seguida, escolha uma prática semanal que manterá sua formação ativa após o curso.\n\nCrescimento com propósito não termina no certificado. Ele continua no modo como você ora, decide, trabalha, cuida de pessoas e serve ao próximo com perseverança.",
-        verse: "2 Timóteo 4:7",
-        question:
-          "Qual compromisso simples ajudará você a continuar crescendo depois desta jornada?",
-      },
-    ],
-  },
-];
+const moduleCache = new Map();
+const quizCache = new Map();
+
+const app = {
+  manifest: null,
+  modules: [],
+  library: { categories: [] },
+  searchIndex: { records: [] },
+  project: null,
+  certificate: null,
+};
 
 const initialState = {
-  completedLessons: [],
   activeModuleId: null,
   activeLessonId: null,
-  overallProgress: 0,
-  examUnlocked: false,
-  examApproved: false,
+  completedLessons: [],
+  favorites: [],
+  notes: {},
+  quizAttempts: {},
+  moduleAssessments: {},
+  finalProject: {
+    completed: false,
+    sections: {},
+  },
+  finalExamApproved: false,
   certificateUnlocked: false,
+  overallProgress: 0,
 };
+
+const state = loadState();
 
 const elements = {
   moduleGrid: document.querySelector("#moduleGrid"),
@@ -372,6 +56,8 @@ const elements = {
   moduleLessonCounter: document.querySelector("#moduleLessonCounter"),
   lessonList: document.querySelector("#lessonList"),
   lessonStatusPill: document.querySelector("#lessonStatusPill"),
+  favoriteLesson: document.querySelector("#favoriteLesson"),
+  favoritesList: document.querySelector("#favoritesList"),
   lessonKicker: document.querySelector("#lessonKicker"),
   lessonTitle: document.querySelector("#lessonTitle"),
   lessonSummary: document.querySelector("#lessonSummary"),
@@ -382,6 +68,18 @@ const elements = {
   completeCurrentLesson: document.querySelector("#completeCurrentLesson"),
   nextLesson: document.querySelector("#nextLesson"),
   backToModules: document.querySelector("#backToModules"),
+  lessonNotes: document.querySelector("#lessonNotes"),
+  saveNotes: document.querySelector("#saveNotes"),
+  lessonQuiz: document.querySelector("#lessonQuiz"),
+  moduleAssessmentTitle: document.querySelector("#moduleAssessmentTitle"),
+  moduleAssessmentStatus: document.querySelector("#moduleAssessmentStatus"),
+  moduleAssessmentQuiz: document.querySelector("#moduleAssessmentQuiz"),
+  globalSearch: document.querySelector("#globalSearch"),
+  searchResults: document.querySelector("#searchResults"),
+  libraryGrid: document.querySelector("#libraryGrid"),
+  projectDescription: document.querySelector("#projectDescription"),
+  projectSections: document.querySelector("#projectSections"),
+  completeProject: document.querySelector("#completeProject"),
   examPill: document.querySelector("#examPill"),
   examMessage: document.querySelector("#examMessage"),
   approveExam: document.querySelector("#approveExam"),
@@ -392,169 +90,147 @@ const elements = {
   navLinks: document.querySelectorAll("[data-nav]"),
 };
 
-const state = loadState();
+function loadState() {
+  try {
+    return {
+      ...initialState,
+      ...JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"),
+    };
+  } catch (error) {
+    console.warn("Não foi possível carregar o estado do LMS.", error);
+    return structuredClone(initialState);
+  }
+}
+
+function saveState() {
+  syncProgressState();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+async function fetchJSON(path) {
+  const response = await fetch(path);
+
+  if (!response.ok) {
+    throw new Error(`Falha ao carregar ${path}`);
+  }
+
+  return response.json();
+}
+
+async function initializeLms() {
+  try {
+    const [manifest, library, searchIndex, project, certificate] =
+      await Promise.all([
+        fetchJSON(MODULES_MANIFEST),
+        fetchJSON(LIBRARY_INDEX),
+        fetchJSON(SEARCH_INDEX),
+        fetchJSON(PROJECT_FINAL),
+        fetchJSON(CERTIFICATE_CONFIG),
+      ]);
+
+    app.manifest = manifest;
+    app.modules = manifest.modules;
+    app.library = library;
+    app.searchIndex = searchIndex;
+    app.project = project;
+    app.certificate = certificate;
+
+    render();
+  } catch (error) {
+    renderFatalError(error);
+  }
+}
+
+function renderFatalError(error) {
+  elements.moduleGrid.innerHTML = `
+    <article class="module-card is-locked">
+      <h3>Não foi possível carregar os dados</h3>
+      <p class="module-description">${escapeHTML(error.message)}</p>
+      <p class="verse">Use um servidor local, como <strong>npm run dev</strong>, para carregar arquivos JSON.</p>
+    </article>
+  `;
+}
+
+async function loadModule(moduleId) {
+  const meta = getModuleMeta(moduleId);
+
+  if (!meta?.dataPath) {
+    return null;
+  }
+
+  if (!moduleCache.has(moduleId)) {
+    moduleCache.set(moduleId, fetchJSON(meta.dataPath));
+  }
+
+  return moduleCache.get(moduleId);
+}
+
+async function loadQuiz(quizId) {
+  if (!quizId) {
+    return null;
+  }
+
+  if (!quizCache.has(quizId)) {
+    quizCache.set(quizId, fetchJSON(`data/quizzes/${quizId}.json`));
+  }
+
+  return quizCache.get(quizId);
+}
+
+function getModuleMeta(moduleId) {
+  return app.modules.find((module) => module.id === moduleId) || null;
+}
+
+function getModuleIndex(moduleId) {
+  return app.modules.findIndex((module) => module.id === moduleId);
+}
 
 function getLessonKey(moduleId, lessonId) {
   return `${moduleId}:${lessonId}`;
 }
 
-function getAllLessonKeys() {
-  return modules.flatMap((module) =>
-    module.lessons.map((lesson) => getLessonKey(module.id, lesson.id)),
+function getTotalExpectedLessons() {
+  return app.modules.reduce(
+    (total, module) => total + (module.lessonCount || 0),
+    0,
   );
 }
 
-function getModuleById(moduleId) {
-  return modules.find((module) => module.id === moduleId) || null;
-}
-
-function getModuleIndex(moduleId) {
-  return modules.findIndex((module) => module.id === moduleId);
-}
-
-function getActiveLesson(module) {
-  if (!module) {
-    return null;
+function getCompletedLessonCount(moduleId = null) {
+  if (!moduleId) {
+    return state.completedLessons.length;
   }
 
-  return (
-    module.lessons.find((lesson) => lesson.id === state.activeLessonId) ||
-    module.lessons[0]
-  );
-}
-
-function escapeHTML(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function contentToParagraphs(content) {
-  return content
-    .split("\n\n")
-    .map((paragraph) => `<p>${escapeHTML(paragraph)}</p>`)
-    .join("");
-}
-
-function loadState() {
-  try {
-    const rawState = localStorage.getItem(STORAGE_KEY);
-
-    if (rawState) {
-      return normalizeState(JSON.parse(rawState));
-    }
-
-    const legacyState = JSON.parse(
-      localStorage.getItem(LEGACY_STORAGE_KEY) || "null",
-    );
-
-    if (!legacyState) {
-      return { ...initialState };
-    }
-
-    const completedLessons = Array.isArray(legacyState.completedModules)
-      ? modules.flatMap((module) =>
-          legacyState.completedModules.includes(module.id)
-            ? module.lessons.map((lesson) => getLessonKey(module.id, lesson.id))
-            : [],
-        )
-      : [];
-
-    return normalizeState({
-      ...initialState,
-      completedLessons,
-      activeModuleId: legacyState.activeModuleId || null,
-      examApproved: Boolean(legacyState.examApproved),
-    });
-  } catch (error) {
-    console.warn("Não foi possível carregar o progresso salvo.", error);
-    return { ...initialState };
-  }
-}
-
-function normalizeState(savedState) {
-  const validLessonKeys = getAllLessonKeys();
-  const completedLessons = Array.isArray(savedState.completedLessons)
-    ? savedState.completedLessons.filter((key) => validLessonKeys.includes(key))
-    : [];
-
-  const activeModule = getModuleById(savedState.activeModuleId);
-  const activeLesson = activeModule?.lessons.find(
-    (lesson) => lesson.id === savedState.activeLessonId,
-  );
-  const allLessonsCompleted =
-    completedLessons.length === validLessonKeys.length;
-  const overallProgress = Math.round(
-    (completedLessons.length / validLessonKeys.length) * 100,
-  );
-  const examApproved = Boolean(savedState.examApproved) && allLessonsCompleted;
-
-  return {
-    ...initialState,
-    ...savedState,
-    completedLessons,
-    activeModuleId: activeModule ? activeModule.id : null,
-    activeLessonId: activeLesson ? activeLesson.id : null,
-    overallProgress,
-    examUnlocked: allLessonsCompleted,
-    examApproved,
-    certificateUnlocked: examApproved,
-  };
-}
-
-function syncDerivedState() {
-  const completedLessons = getCompletedLessonCount();
-  const totalLessons = getTotalLessonCount();
-
-  state.overallProgress = Math.round((completedLessons / totalLessons) * 100);
-  state.examUnlocked = completedLessons === totalLessons;
-  state.examApproved = state.examApproved && state.examUnlocked;
-  state.certificateUnlocked = state.examApproved;
-}
-
-function saveState() {
-  syncDerivedState();
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-
-function getTotalLessonCount() {
-  return getAllLessonKeys().length;
-}
-
-function getCompletedLessonCount() {
-  return state.completedLessons.length;
+  return state.completedLessons.filter((lessonKey) =>
+    lessonKey.startsWith(`${moduleId}:`),
+  ).length;
 }
 
 function isLessonCompleted(moduleId, lessonId) {
   return state.completedLessons.includes(getLessonKey(moduleId, lessonId));
 }
 
-function getModuleCompletedCount(module) {
-  return module.lessons.filter((lesson) =>
-    isLessonCompleted(module.id, lesson.id),
-  ).length;
-}
-
 function isModuleCompleted(module) {
-  return getModuleCompletedCount(module) === module.lessons.length;
+  return (
+    module.lessonCount > 0 &&
+    getCompletedLessonCount(module.id) >= module.lessonCount
+  );
 }
 
 function getCompletedModuleCount() {
-  return modules.filter((module) => isModuleCompleted(module)).length;
+  return app.modules.filter((module) => isModuleCompleted(module)).length;
 }
 
-function getModuleStatus(index) {
-  const module = modules[index];
-  const previousModule = modules[index - 1];
-
+function getModuleStatus(module, index) {
   if (isModuleCompleted(module)) {
     return "completed";
   }
 
-  if (index === 0 || isModuleCompleted(previousModule)) {
+  if (module.status === "planned" || !module.dataPath) {
+    return "planned";
+  }
+
+  if (index === 0 || isModuleCompleted(app.modules[index - 1])) {
     return "available";
   }
 
@@ -566,57 +242,61 @@ function getStatusLabel(status) {
     completed: "Concluído",
     available: "Disponível",
     locked: "Bloqueado",
-    pending: "Pendente",
+    planned: "Em estrutura",
   };
 
   return labels[status];
 }
 
-function getModuleProgress(module) {
-  return Math.round(
-    (getModuleCompletedCount(module) / module.lessons.length) * 100,
-  );
+function syncProgressState() {
+  const totalLessons = getTotalExpectedLessons();
+  const completedLessons = getCompletedLessonCount();
+
+  state.overallProgress = totalLessons
+    ? Math.round((completedLessons / totalLessons) * 100)
+    : 0;
+  state.certificateUnlocked =
+    state.finalExamApproved && Boolean(state.finalProject.completed);
 }
 
-function findFirstStudyModule() {
-  return (
-    modules.find(
-      (module, index) =>
-        getModuleStatus(index) === "available" && !isModuleCompleted(module),
-    ) || modules[0]
-  );
-}
+function render() {
+  syncProgressState();
+  renderModules();
+  renderProgress();
+  renderLibrary();
+  renderProjectFinal();
+  renderFavorites();
+  renderExam();
+  renderCertificate();
+  renderSearchResults("");
 
-function findFirstStudyLesson(module) {
-  return (
-    module.lessons.find((lesson) => !isLessonCompleted(module.id, lesson.id)) ||
-    module.lessons[0]
-  );
+  if (state.activeModuleId) {
+    openModule(state.activeModuleId, state.activeLessonId, false);
+  } else {
+    resetClassroom();
+  }
 }
 
 function renderModules() {
-  elements.moduleGrid.innerHTML = modules
+  elements.moduleGrid.innerHTML = app.modules
     .map((module, index) => {
-      const status = getModuleStatus(index);
-      const moduleNumber = String(index + 1).padStart(2, "0");
-      const completedLessons = getModuleCompletedCount(module);
-      const progress = getModuleProgress(module);
-      const isLocked = status === "locked";
-      const isActive = state.activeModuleId === module.id;
+      const status = getModuleStatus(module, index);
+      const completedLessons = getCompletedLessonCount(module.id);
+      const progress = module.lessonCount
+        ? Math.round((completedLessons / module.lessonCount) * 100)
+        : 0;
+      const isDisabled = status === "locked" || status === "planned";
 
       return `
-        <article class="module-card is-${status} ${
-          isActive ? "is-active-module" : ""
-        }" data-module-id="${module.id}">
+        <article class="module-card is-${status}" data-module-id="${module.id}">
           <div class="module-topline">
-            <span class="module-number">Módulo ${moduleNumber}</span>
+            <span class="module-number">Módulo ${String(module.order).padStart(2, "0")}</span>
             <span class="status-pill status-${status}">${getStatusLabel(status)}</span>
           </div>
           <h3>${escapeHTML(module.title)}</h3>
           <p class="module-description">${escapeHTML(module.description)}</p>
-          <p class="verse">${escapeHTML(module.verse)}</p>
           <div class="module-card-progress">
-            <span>${completedLessons}/${module.lessons.length} aulas</span>
+            <span>${completedLessons}/${module.lessonCount} aulas</span>
             <strong>${progress}%</strong>
           </div>
           <div class="progress-track progress-track-mini" aria-hidden="true">
@@ -624,7 +304,7 @@ function renderModules() {
           </div>
           <div class="card-actions">
             <button class="btn btn-secondary" type="button" data-action="open-module" ${
-              isLocked ? "disabled" : ""
+              isDisabled ? "disabled" : ""
             }>
               ${status === "completed" ? "Revisar módulo" : "Acessar módulo"}
             </button>
@@ -635,82 +315,151 @@ function renderModules() {
     .join("");
 }
 
-function updateProgress() {
-  syncDerivedState();
-
+function renderProgress() {
+  const totalLessons = getTotalExpectedLessons();
   const completedLessons = getCompletedLessonCount();
-  const totalLessons = getTotalLessonCount();
-  const completedModules = getCompletedModuleCount();
-  const progress = state.overallProgress;
 
-  elements.progressPercent.textContent = `${progress}%`;
-  elements.moduleCounter.textContent = `${completedModules}/${modules.length}`;
+  elements.progressPercent.textContent = `${state.overallProgress}%`;
+  elements.moduleCounter.textContent = `${getCompletedModuleCount()}/${app.modules.length}`;
   elements.lessonCounter.textContent = `${completedLessons}/${totalLessons}`;
-  elements.progressBar.setAttribute("aria-valuenow", String(progress));
-  elements.progressBar.querySelector("span").style.width = `${progress}%`;
-
-  elements.examStatus.textContent = state.examApproved
-    ? "Aprovada"
-    : state.examUnlocked
-      ? "Liberada"
-      : "Bloqueada";
-
-  elements.certificateStatus.textContent = state.certificateUnlocked
-    ? "Liberado"
-    : "Bloqueado";
-
-  renderExam();
-  renderCertificate();
+  elements.progressBar.setAttribute(
+    "aria-valuenow",
+    String(state.overallProgress),
+  );
+  elements.progressBar.querySelector("span").style.width =
+    `${state.overallProgress}%`;
 }
 
-function renderClassroom() {
-  const module = getModuleById(state.activeModuleId);
+async function openModule(moduleId, lessonId = null, shouldScroll = true) {
+  const meta = getModuleMeta(moduleId);
+  const index = getModuleIndex(moduleId);
 
-  if (!module || getModuleStatus(getModuleIndex(module.id)) === "locked") {
-    resetClassroom();
+  if (!meta || getModuleStatus(meta, index) === "locked") {
     return;
   }
 
-  const moduleIndex = getModuleIndex(module.id);
-  const lesson = getActiveLesson(module);
-  const lessonIndex = module.lessons.findIndex((item) => item.id === lesson.id);
-  const completedLessons = getModuleCompletedCount(module);
-  const progress = getModuleProgress(module);
-  const lessonCompleted = isLessonCompleted(module.id, lesson.id);
+  const module = await loadModule(moduleId);
 
-  state.activeLessonId = lesson.id;
+  if (!module) {
+    return;
+  }
+
+  const targetLesson =
+    module.lessons.find((lesson) => lesson.id === lessonId) ||
+    module.lessons.find((lesson) => !isLessonCompleted(module.id, lesson.id)) ||
+    module.lessons[0];
+
+  state.activeModuleId = module.id;
+  state.activeLessonId = targetLesson.id;
+  saveState();
+
+  renderClassroom(module, targetLesson);
+  renderModules();
+
+  if (shouldScroll) {
+    document.querySelector("#sala-aula").scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+function renderClassroom(module, lesson) {
+  const meta = getModuleMeta(module.id);
+  const moduleIndex = getModuleIndex(module.id);
+  const completedLessons = getCompletedLessonCount(module.id);
+  const progress = meta.lessonCount
+    ? Math.round((completedLessons / meta.lessonCount) * 100)
+    : 0;
+  const lessonIndex = module.lessons.findIndex((item) => item.id === lesson.id);
+  const completed = isLessonCompleted(module.id, lesson.id);
+  const favorite = state.favorites.includes(getLessonKey(module.id, lesson.id));
 
   elements.classroomDescription.textContent =
-    "Continue o estudo pelas aulas internas do módulo selecionado.";
+    "Conteúdo carregado dinamicamente a partir dos arquivos JSON do LMS.";
   elements.classroomModuleNumber.textContent = `Módulo ${String(moduleIndex + 1).padStart(2, "0")}`;
   elements.classroomModuleTitle.textContent = module.title;
   elements.classroomModuleDescription.textContent = module.description;
   elements.moduleProgressPercent.textContent = `${progress}%`;
   elements.moduleProgressBar.setAttribute("aria-valuenow", String(progress));
   elements.moduleProgressBar.querySelector("span").style.width = `${progress}%`;
-  elements.moduleLessonCounter.textContent = `${completedLessons} de ${module.lessons.length} aulas concluídas`;
+  elements.moduleLessonCounter.textContent = `${completedLessons} de ${meta.lessonCount} aulas concluídas`;
+  elements.lessonStatusPill.textContent = completed ? "Concluída" : "Pendente";
+  elements.lessonStatusPill.className = `status-pill ${
+    completed ? "status-completed" : "status-locked"
+  }`;
+  elements.favoriteLesson.disabled = false;
+  elements.favoriteLesson.textContent = favorite
+    ? "Remover favorito"
+    : "Favoritar aula";
+  elements.lessonKicker.textContent = `${module.title} • Aula ${lesson.order}`;
+  elements.lessonTitle.textContent = lesson.title;
+  elements.lessonSummary.textContent = lesson.summary || lesson.objective || "";
+  elements.lessonVerse.textContent =
+    (lesson.biblicalReferences || []).join(", ") || "-";
+  elements.lessonText.innerHTML = renderLessonBody(lesson);
+  elements.lessonQuestion.textContent =
+    lesson.content?.challenge || "Sem desafio cadastrado.";
+  elements.completeCurrentLesson.disabled = completed;
+  elements.completeCurrentLesson.textContent = completed
+    ? "Aula concluída"
+    : "Marcar aula como concluída";
+  elements.previousLesson.disabled = lessonIndex === 0;
+  elements.nextLesson.disabled = lessonIndex === module.lessons.length - 1;
+  elements.lessonNotes.value =
+    state.notes[getLessonKey(module.id, lesson.id)] || "";
+  elements.saveNotes.disabled = false;
 
   renderLessonList(module);
-  renderLessonContent(module, lesson, lessonIndex, lessonCompleted);
+  renderQuizPanel(lesson.quizId, elements.lessonQuiz, "lesson");
+  renderModuleAssessment(module);
+}
+
+function renderLessonBody(lesson) {
+  const caseStudy = lesson.content?.caseStudy;
+  const exercises = lesson.content?.exercises || [];
+  const bibliography = lesson.bibliography || [];
+
+  return `
+    <section>
+      <h4>Objetivo</h4>
+      <p>${escapeHTML(lesson.objective || "Objetivo não cadastrado.")}</p>
+    </section>
+    <section>
+      <h4>Conteúdo</h4>
+      <p>${escapeHTML(lesson.content?.main || "Conteúdo em preparação.")}</p>
+    </section>
+    <section>
+      <h4>Estudo de caso</h4>
+      <p><strong>${escapeHTML(caseStudy?.title || "Caso não cadastrado")}</strong></p>
+      <p>${escapeHTML(caseStudy?.problem || "")}</p>
+      <p>${escapeHTML(caseStudy?.analysis || "")}</p>
+      <p>${escapeHTML(caseStudy?.solution || "")}</p>
+    </section>
+    <section>
+      <h4>Exercícios</h4>
+      <ul>${exercises.map((item) => `<li>${escapeHTML(item)}</li>`).join("")}</ul>
+    </section>
+    <section>
+      <h4>Bibliografia</h4>
+      <ul>${bibliography
+        .map(
+          (item) =>
+            `<li>${escapeHTML(item.title)} — ${escapeHTML(item.author)} (${escapeHTML(item.type)})</li>`,
+        )
+        .join("")}</ul>
+    </section>
+  `;
 }
 
 function renderLessonList(module) {
   elements.lessonList.innerHTML = module.lessons
-    .map((lesson, index) => {
+    .map((lesson) => {
       const completed = isLessonCompleted(module.id, lesson.id);
       const active = state.activeLessonId === lesson.id;
 
       return `
-        <button
-          class="lesson-item ${active ? "is-active" : ""} ${
-            completed ? "is-completed" : ""
-          }"
-          type="button"
-          data-action="select-lesson"
-          data-lesson-id="${lesson.id}"
-          aria-pressed="${active}"
-        >
-          <span class="lesson-item-index">${String(index + 1).padStart(2, "0")}</span>
+        <button class="lesson-item ${active ? "is-active" : ""} ${
+          completed ? "is-completed" : ""
+        }" type="button" data-action="select-lesson" data-lesson-id="${lesson.id}">
+          <span class="lesson-item-index">${String(lesson.order).padStart(2, "0")}</span>
           <span>
             <strong>${escapeHTML(lesson.title)}</strong>
             <small>${completed ? "Concluída" : "Pendente"}</small>
@@ -721,227 +470,193 @@ function renderLessonList(module) {
     .join("");
 }
 
-function renderLessonContent(module, lesson, lessonIndex, lessonCompleted) {
-  elements.lessonStatusPill.textContent = lessonCompleted
-    ? "Concluída"
-    : "Pendente";
-  elements.lessonStatusPill.className = `status-pill ${
-    lessonCompleted ? "status-completed" : "status-locked"
-  }`;
-  elements.lessonKicker.textContent = `${module.title} • Aula ${lessonIndex + 1}`;
-  elements.lessonTitle.textContent = lesson.title;
-  elements.lessonSummary.textContent = lesson.summary;
-  elements.lessonVerse.textContent = lesson.verse;
-  elements.lessonText.innerHTML = contentToParagraphs(lesson.content);
-  elements.lessonQuestion.textContent = lesson.question;
-  elements.previousLesson.disabled = lessonIndex === 0;
-  elements.nextLesson.disabled = lessonIndex === module.lessons.length - 1;
-  elements.completeCurrentLesson.disabled = lessonCompleted;
-  elements.completeCurrentLesson.textContent = lessonCompleted
-    ? "Aula concluída"
-    : "Marcar aula como concluída";
-}
-
-function resetClassroom() {
-  elements.classroomDescription.textContent =
-    "Acesse um módulo disponível para visualizar as aulas, avançar pela trilha e registrar sua conclusão.";
-  elements.classroomModuleNumber.textContent = "Módulo";
-  elements.classroomModuleTitle.textContent = "Nenhum módulo selecionado";
-  elements.classroomModuleDescription.textContent =
-    "Clique em “Acessar módulo” para abrir a área de estudo.";
-  elements.moduleProgressPercent.textContent = "0%";
-  elements.moduleProgressBar.setAttribute("aria-valuenow", "0");
-  elements.moduleProgressBar.querySelector("span").style.width = "0%";
-  elements.moduleLessonCounter.textContent = "0 de 3 aulas concluídas";
-  elements.lessonList.innerHTML =
-    '<p class="empty-state">Os tópicos da aula aparecerão quando um módulo for aberto.</p>';
-  elements.lessonStatusPill.textContent = "Pendente";
-  elements.lessonStatusPill.className = "status-pill status-locked";
-  elements.lessonKicker.textContent = "Aula selecionada";
-  elements.lessonTitle.textContent = "Selecione uma aula";
-  elements.lessonSummary.textContent =
-    "O conteúdo da aula aparecerá aqui com fundamento, prática e reflexão.";
-  elements.lessonVerse.textContent = "-";
-  elements.lessonText.innerHTML =
-    "<p>Abra um módulo disponível e escolha uma aula para começar seus estudos.</p>";
-  elements.lessonQuestion.textContent =
-    "Qual próximo passo prático você deseja assumir nesta jornada?";
-  elements.previousLesson.disabled = true;
-  elements.completeCurrentLesson.disabled = true;
-  elements.completeCurrentLesson.textContent = "Marcar aula como concluída";
-  elements.nextLesson.disabled = true;
-}
-
-function openModule(moduleId, lessonId = null, shouldScroll = true) {
-  const module = getModuleById(moduleId);
-  const moduleIndex = getModuleIndex(moduleId);
-
-  if (!module || getModuleStatus(moduleIndex) === "locked") {
+async function renderQuizPanel(quizId, target, scope) {
+  if (!quizId) {
+    target.innerHTML = "<p>Quiz ainda não configurado para este item.</p>";
     return;
   }
 
-  const targetLesson =
-    module.lessons.find((lesson) => lesson.id === lessonId) ||
-    findFirstStudyLesson(module);
+  const quiz = await loadQuiz(quizId);
+  const attempt = state.quizAttempts[quiz.id];
 
-  state.activeModuleId = module.id;
-  state.activeLessonId = targetLesson.id;
-  saveState();
-  render();
-
-  if (shouldScroll) {
-    document.querySelector("#sala-aula").scrollIntoView({ behavior: "smooth" });
-  }
+  target.innerHTML = `
+    <form class="quiz-form" data-quiz-id="${quiz.id}" data-scope="${scope}">
+      <h5>${escapeHTML(quiz.title)}</h5>
+      ${quiz.questions.map(renderQuestion).join("")}
+      <button class="btn btn-primary" type="submit">Enviar respostas</button>
+      <p class="quiz-result">${attempt ? `Última nota: ${attempt.score}%` : "Sem tentativa registrada."}</p>
+    </form>
+  `;
 }
 
-function selectLesson(lessonId) {
-  const module = getModuleById(state.activeModuleId);
-
-  if (!module || !module.lessons.some((lesson) => lesson.id === lessonId)) {
-    return;
+function renderQuestion(question, index) {
+  if (question.type === "reflection") {
+    return `
+      <fieldset>
+        <legend>${index + 1}. ${escapeHTML(question.prompt)}</legend>
+        <textarea name="${question.id}" rows="3"></textarea>
+      </fieldset>
+    `;
   }
 
-  state.activeLessonId = lessonId;
-  saveState();
-  renderClassroom();
+  if (question.type === "true-false") {
+    return `
+      <fieldset>
+        <legend>${index + 1}. ${escapeHTML(question.prompt)}</legend>
+        <label><input type="radio" name="${question.id}" value="true" /> Verdadeiro</label>
+        <label><input type="radio" name="${question.id}" value="false" /> Falso</label>
+      </fieldset>
+    `;
+  }
+
+  return `
+    <fieldset>
+      <legend>${index + 1}. ${escapeHTML(question.prompt)}</legend>
+      ${question.options
+        .map(
+          (option) =>
+            `<label><input type="radio" name="${question.id}" value="${escapeHTML(option)}" /> ${escapeHTML(option)}</label>`,
+        )
+        .join("")}
+    </fieldset>
+  `;
 }
 
-function completeCurrentLesson() {
-  const module = getModuleById(state.activeModuleId);
-  const lesson = getActiveLesson(module);
-
-  if (!module || !lesson) {
-    return;
-  }
-
-  const lessonKey = getLessonKey(module.id, lesson.id);
-
-  if (!state.completedLessons.includes(lessonKey)) {
-    state.completedLessons.push(lessonKey);
-  }
-
-  saveState();
-  render();
-}
-
-function moveLesson(direction) {
-  const module = getModuleById(state.activeModuleId);
-  const lesson = getActiveLesson(module);
-
-  if (!module || !lesson) {
-    return;
-  }
-
-  const currentIndex = module.lessons.findIndex(
-    (item) => item.id === lesson.id,
+function gradeQuiz(quiz, formData) {
+  const gradable = quiz.questions.filter(
+    (question) => question.type !== "reflection",
   );
-  const nextLesson = module.lessons[currentIndex + direction];
+  const correct = gradable.filter((question) => {
+    const answer = formData.get(question.id);
+    return String(answer) === String(question.answer);
+  }).length;
 
-  if (nextLesson) {
-    selectLesson(nextLesson.id);
-  }
+  return gradable.length ? Math.round((correct / gradable.length) * 100) : 100;
 }
 
-function handleModuleActions(event) {
-  const button = event.target.closest("button[data-action]");
-  const card = event.target.closest("[data-module-id]");
-
-  if (!button || !card) {
-    return;
-  }
-
-  if (button.dataset.action === "open-module") {
-    openModule(card.dataset.moduleId);
-  }
+async function renderModuleAssessment(module) {
+  elements.moduleAssessmentTitle.textContent = `Avaliação — ${module.title}`;
+  elements.moduleAssessmentStatus.textContent =
+    "Avaliação carregada dinamicamente a partir de /data/quizzes.";
+  await renderQuizPanel(
+    module.assessmentQuizId,
+    elements.moduleAssessmentQuiz,
+    "module",
+  );
 }
 
-function handleLessonActions(event) {
-  const button = event.target.closest("button[data-action='select-lesson']");
-
-  if (!button) {
-    return;
-  }
-
-  selectLesson(button.dataset.lessonId);
+function renderLibrary() {
+  elements.libraryGrid.innerHTML = app.library.categories
+    .map(
+      (category) => `
+        <article class="resource-card" data-category-id="${category.id}">
+          <span class="resource-type">${escapeHTML(category.title)}</span>
+          <h3>${escapeHTML(category.description)}</h3>
+          <ul>
+            ${category.resources
+              .map(
+                (resource) =>
+                  `<li><strong>${escapeHTML(resource.title)}</strong><span>${escapeHTML(resource.type)}</span></li>`,
+              )
+              .join("")}
+          </ul>
+        </article>
+      `,
+    )
+    .join("");
 }
 
-function handleNavigation(event) {
-  const link = event.target.closest("[data-nav]");
-
-  if (!link) {
+function renderProjectFinal() {
+  if (!app.project) {
     return;
   }
 
-  const targetSelector = link.getAttribute("href");
-  const target = document.querySelector(targetSelector);
-
-  if (!target) {
-    return;
-  }
-
-  event.preventDefault();
-  target.scrollIntoView({ behavior: "smooth" });
-  history.replaceState(null, "", targetSelector);
+  elements.projectDescription.textContent = app.project.description;
+  elements.projectSections.innerHTML = app.project.sections
+    .map(
+      (section) => `
+        <label class="project-item">
+          <span>${escapeHTML(section.title)}</span>
+          <textarea data-project-section="${section.id}" rows="4">${escapeHTML(
+            state.finalProject.sections[section.id] || "",
+          )}</textarea>
+        </label>
+      `,
+    )
+    .join("");
+  elements.completeProject.textContent = state.finalProject.completed
+    ? "Projeto final concluído"
+    : "Marcar projeto final como concluído";
 }
 
-function setActiveNavLink() {
-  const sections = [
-    "inicio",
-    "modulos",
-    "sala-aula",
-    "biblioteca",
-    "prova",
-    "certificado",
-  ];
-  const pageSections = sections
-    .map((id) => document.querySelector(`#${id}`))
-    .filter(Boolean);
-  let currentSection = pageSections[0];
+function renderFavorites() {
+  const favoriteLessons = state.favorites;
 
-  pageSections.forEach((section) => {
-    if (section.getBoundingClientRect().top <= 140) {
-      currentSection = section;
-    }
-  });
+  elements.favoritesList.innerHTML = favoriteLessons.length
+    ? favoriteLessons
+        .map((key) => {
+          const [moduleId, lessonId] = key.split(":");
+          const module = getModuleMeta(moduleId);
+          return `
+            <button class="mini-link" type="button" data-favorite-module="${moduleId}" data-favorite-lesson="${lessonId}">
+              ${escapeHTML(module?.title || moduleId)} • ${escapeHTML(lessonId)}
+            </button>
+          `;
+        })
+        .join("")
+    : "<p>Nenhuma aula favoritada.</p>";
+}
 
-  if (!currentSection) {
-    return;
-  }
+function renderSearchResults(query) {
+  const normalized = query.trim().toLowerCase();
+  const records = normalized
+    ? app.searchIndex.records.filter((record) =>
+        [record.title, record.summary, ...(record.tags || [])]
+          .join(" ")
+          .toLowerCase()
+          .includes(normalized),
+      )
+    : [];
 
-  elements.navLinks.forEach((link) => {
-    link.classList.toggle(
-      "is-active",
-      link.getAttribute("href") === `#${currentSection.id}`,
-    );
-  });
+  elements.searchResults.innerHTML = records.length
+    ? records
+        .map(
+          (record) => `
+            <button class="search-result-item" type="button" data-search-type="${record.type}" data-module-id="${record.moduleId || ""}" data-lesson-id="${record.lessonId || ""}">
+              <strong>${escapeHTML(record.title)}</strong>
+              <span>${escapeHTML(record.summary)}</span>
+            </button>
+          `,
+        )
+        .join("")
+    : "<p>Digite um termo para pesquisar conteúdos indexados.</p>";
 }
 
 function renderExam() {
-  elements.approveExam.disabled = !state.examUnlocked || state.examApproved;
+  const allLessonsCompleted =
+    getCompletedLessonCount() >= getTotalExpectedLessons();
 
-  if (state.examApproved) {
+  elements.approveExam.disabled =
+    !allLessonsCompleted || state.finalExamApproved;
+
+  if (state.finalExamApproved) {
     elements.examPill.textContent = "Aprovada";
     elements.examPill.className = "status-pill status-completed";
     elements.examMessage.textContent =
-      "A aprovação foi registrada. O certificado está liberado.";
+      "A aprovação final foi registrada. O certificado depende também do projeto final.";
     elements.approveExam.textContent = "Aprovação registrada";
     return;
   }
 
-  if (state.examUnlocked) {
-    elements.examPill.textContent = "Liberada";
-    elements.examPill.className = "status-pill status-available";
-    elements.examMessage.textContent =
-      "Todas as aulas foram concluídas. A prova final está liberada.";
-    elements.approveExam.textContent = "Registrar aprovação";
-    return;
-  }
-
-  elements.examPill.textContent = "Bloqueada";
-  elements.examPill.className = "status-pill status-locked";
-  elements.examMessage.textContent =
-    "Conclua todos os módulos e aulas para liberar a prova.";
-  elements.approveExam.textContent = "Registrar aprovação";
+  elements.examPill.textContent = allLessonsCompleted
+    ? "Liberada"
+    : "Bloqueada";
+  elements.examPill.className = `status-pill ${
+    allLessonsCompleted ? "status-available" : "status-locked"
+  }`;
+  elements.examMessage.textContent = allLessonsCompleted
+    ? "Todas as aulas esperadas foram concluídas. A prova final está liberada."
+    : "Conclua todas as aulas esperadas para liberar a prova final.";
 }
 
 function renderCertificate() {
@@ -949,72 +664,234 @@ function renderCertificate() {
     "is-unlocked",
     state.certificateUnlocked,
   );
+  elements.certificateStatus.textContent = state.certificateUnlocked
+    ? "Liberado"
+    : "Bloqueado";
+  elements.certificateMessage.textContent = state.certificateUnlocked
+    ? "Certificado liberado após aprovação final e projeto final concluído."
+    : "O certificado será liberado após aprovação final e conclusão do projeto final.";
+  elements.certificateText.textContent = state.certificateUnlocked
+    ? `Concedido pela conclusão da formação ${app.certificate?.courseName || ""}.`
+    : "Bloqueado até cumprir os requisitos de certificação.";
+}
 
-  if (state.certificateUnlocked) {
-    elements.certificateMessage.textContent =
-      "Certificado liberado após aprovação na prova final.";
-    elements.certificateText.textContent =
-      "Concedido pela conclusão da Jornada de Crescimento com Propósito.";
+function resetClassroom() {
+  elements.classroomDescription.textContent =
+    "Selecione um módulo disponível para carregar aulas via JSON.";
+  elements.classroomModuleNumber.textContent = "Módulo";
+  elements.classroomModuleTitle.textContent = "Nenhum módulo selecionado";
+  elements.classroomModuleDescription.textContent =
+    "A arquitetura está preparada para centenas de aulas dinâmicas.";
+  elements.moduleProgressPercent.textContent = "0%";
+  elements.moduleProgressBar.querySelector("span").style.width = "0%";
+  elements.moduleLessonCounter.textContent = "0 aulas concluídas";
+  elements.lessonList.innerHTML =
+    '<p class="empty-state">A lista será carregada a partir do JSON do módulo.</p>';
+  elements.lessonTitle.textContent = "Selecione uma aula";
+  elements.lessonSummary.textContent =
+    "O conteúdo estruturado será renderizado nesta área.";
+  elements.lessonText.innerHTML = "<p>Nenhuma aula carregada.</p>";
+  elements.lessonVerse.textContent = "-";
+  elements.lessonQuestion.textContent = "-";
+  elements.favoriteLesson.disabled = true;
+  elements.lessonNotes.value = "";
+  elements.saveNotes.disabled = true;
+  elements.lessonQuiz.innerHTML = "Selecione uma aula para carregar o quiz.";
+}
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+elements.moduleGrid.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-action='open-module']");
+  const card = event.target.closest("[data-module-id]");
+
+  if (button && card) {
+    openModule(card.dataset.moduleId);
+  }
+});
+
+elements.lessonList.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-action='select-lesson']");
+
+  if (button && state.activeModuleId) {
+    openModule(state.activeModuleId, button.dataset.lessonId);
+  }
+});
+
+elements.startCourse.addEventListener("click", () => {
+  const firstAvailable = app.modules.find(
+    (module, index) => getModuleStatus(module, index) === "available",
+  );
+
+  if (firstAvailable) {
+    openModule(firstAvailable.id);
+  }
+});
+
+elements.completeCurrentLesson.addEventListener("click", () => {
+  if (!state.activeModuleId || !state.activeLessonId) {
     return;
   }
 
-  elements.certificateMessage.textContent =
-    "O certificado será liberado após aprovação na prova final.";
-  elements.certificateText.textContent =
-    "Bloqueado até a aprovação na prova final.";
-}
+  const lessonKey = getLessonKey(state.activeModuleId, state.activeLessonId);
 
-function resetProgress() {
-  const shouldReset = window.confirm(
-    "Deseja reiniciar o progresso salvo neste navegador?",
+  if (!state.completedLessons.includes(lessonKey)) {
+    state.completedLessons.push(lessonKey);
+  }
+
+  saveState();
+  openModule(state.activeModuleId, state.activeLessonId, false);
+});
+
+elements.previousLesson.addEventListener("click", async () => {
+  const module = await loadModule(state.activeModuleId);
+  const index = module.lessons.findIndex(
+    (lesson) => lesson.id === state.activeLessonId,
   );
+  const lesson = module.lessons[index - 1];
+
+  if (lesson) {
+    openModule(module.id, lesson.id);
+  }
+});
+
+elements.nextLesson.addEventListener("click", async () => {
+  const module = await loadModule(state.activeModuleId);
+  const index = module.lessons.findIndex(
+    (lesson) => lesson.id === state.activeLessonId,
+  );
+  const lesson = module.lessons[index + 1];
+
+  if (lesson) {
+    openModule(module.id, lesson.id);
+  }
+});
+
+elements.favoriteLesson.addEventListener("click", () => {
+  const lessonKey = getLessonKey(state.activeModuleId, state.activeLessonId);
+  const favoriteIndex = state.favorites.indexOf(lessonKey);
+
+  if (favoriteIndex >= 0) {
+    state.favorites.splice(favoriteIndex, 1);
+  } else {
+    state.favorites.push(lessonKey);
+  }
+
+  saveState();
+  openModule(state.activeModuleId, state.activeLessonId, false);
+});
+
+elements.saveNotes.addEventListener("click", () => {
+  const lessonKey = getLessonKey(state.activeModuleId, state.activeLessonId);
+  state.notes[lessonKey] = elements.lessonNotes.value;
+  saveState();
+});
+
+document.addEventListener("submit", async (event) => {
+  const form = event.target.closest(".quiz-form");
+
+  if (!form) {
+    return;
+  }
+
+  event.preventDefault();
+
+  const quiz = await loadQuiz(form.dataset.quizId);
+  const score = gradeQuiz(quiz, new FormData(form));
+
+  state.quizAttempts[quiz.id] = {
+    score,
+    passed: score >= quiz.passScore,
+    completedAt: new Date().toISOString(),
+  };
+
+  if (form.dataset.scope === "module") {
+    state.moduleAssessments[state.activeModuleId] = state.quizAttempts[quiz.id];
+  }
+
+  saveState();
+  openModule(state.activeModuleId, state.activeLessonId, false);
+});
+
+elements.globalSearch.addEventListener("input", (event) => {
+  renderSearchResults(event.target.value);
+});
+
+elements.searchResults.addEventListener("click", (event) => {
+  const item = event.target.closest("[data-search-type]");
+
+  if (item?.dataset.searchType === "lesson") {
+    openModule(item.dataset.moduleId, item.dataset.lessonId);
+  }
+});
+
+elements.favoritesList.addEventListener("click", (event) => {
+  const item = event.target.closest("[data-favorite-module]");
+
+  if (item) {
+    openModule(item.dataset.favoriteModule, item.dataset.favoriteLesson);
+  }
+});
+
+elements.projectSections.addEventListener("input", (event) => {
+  const field = event.target.closest("[data-project-section]");
+
+  if (field) {
+    state.finalProject.sections[field.dataset.projectSection] = field.value;
+    saveState();
+  }
+});
+
+elements.completeProject.addEventListener("click", () => {
+  state.finalProject.completed = true;
+  saveState();
+  renderProjectFinal();
+  renderCertificate();
+});
+
+elements.approveExam.addEventListener("click", () => {
+  state.finalExamApproved = true;
+  saveState();
+  renderExam();
+  renderCertificate();
+});
+
+elements.backToModules.addEventListener("click", () => {
+  document.querySelector("#modulos").scrollIntoView({ behavior: "smooth" });
+});
+
+elements.resetProgress.addEventListener("click", () => {
+  const shouldReset = window.confirm("Deseja reiniciar o progresso salvo?");
 
   if (!shouldReset) {
     return;
   }
 
-  state.completedLessons = [];
-  state.activeModuleId = null;
-  state.activeLessonId = null;
-  state.overallProgress = 0;
-  state.examUnlocked = false;
-  state.examApproved = false;
-  state.certificateUnlocked = false;
+  Object.assign(state, structuredClone(initialState));
   saveState();
   render();
-}
-
-function render() {
-  renderModules();
-  updateProgress();
-  renderClassroom();
-}
-
-elements.moduleGrid.addEventListener("click", handleModuleActions);
-elements.lessonList.addEventListener("click", handleLessonActions);
-elements.startCourse.addEventListener("click", () => {
-  const module = findFirstStudyModule();
-  openModule(module.id);
 });
-elements.previousLesson.addEventListener("click", () => moveLesson(-1));
-elements.nextLesson.addEventListener("click", () => moveLesson(1));
-elements.completeCurrentLesson.addEventListener("click", completeCurrentLesson);
-elements.backToModules.addEventListener("click", () => {
-  document.querySelector("#modulos").scrollIntoView({ behavior: "smooth" });
-});
-elements.approveExam.addEventListener("click", () => {
-  if (!state.examUnlocked) {
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("[data-nav]");
+
+  if (!link) {
     return;
   }
 
-  state.examApproved = true;
-  saveState();
-  render();
-  document.querySelector("#certificado").scrollIntoView({ behavior: "smooth" });
-});
-elements.resetProgress.addEventListener("click", resetProgress);
-document.addEventListener("click", handleNavigation);
-window.addEventListener("scroll", setActiveNavLink, { passive: true });
+  const target = document.querySelector(link.getAttribute("href"));
 
-render();
-setActiveNavLink();
+  if (target) {
+    event.preventDefault();
+    target.scrollIntoView({ behavior: "smooth" });
+  }
+});
+
+initializeLms();

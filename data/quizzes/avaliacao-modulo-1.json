@@ -1,0 +1,19 @@
+{
+  "id": "avaliacao-modulo-1",
+  "title": "Avaliação do Módulo 1",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "prompt": "O que a arquitetura da plataforma deve permitir?",
+      "options": [
+        "Adicionar novas aulas via JSON sem alterar o app principal",
+        "Editar todo o HTML a cada nova aula",
+        "Remover o sistema de progresso",
+        "Usar somente conteúdo fixo no index.html"
+      ],
+      "answer": "Adicionar novas aulas via JSON sem alterar o app principal"
+    }
+  ]
+}

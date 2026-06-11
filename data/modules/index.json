@@ -1,0 +1,98 @@
+{
+  "courseId": "jornada-crescimento-proposito",
+  "courseTitle": "Jornada de Crescimento com Propósito",
+  "version": "3.0.0",
+  "totalExpectedLessons": 120,
+  "modules": [
+    {
+      "id": "modulo-1-identidade-valor-proposito",
+      "order": 1,
+      "title": "Identidade, Valor e Propósito",
+      "description": "Fundamentos de identidade, dignidade humana, narrativa pessoal e direção de vida.",
+      "status": "available",
+      "lessonCount": 12,
+      "dataPath": "data/modules/modulo-1-identidade-valor-proposito.json"
+    },
+    {
+      "id": "modulo-2-renovacao-mente-transformacao-cognitiva",
+      "order": 2,
+      "title": "Renovação da Mente e Transformação Cognitiva",
+      "description": "Estrutura de crenças, pensamentos automáticos, discernimento e mudança cognitiva.",
+      "status": "planned",
+      "lessonCount": 12,
+      "dataPath": ""
+    },
+    {
+      "id": "modulo-3-disciplina-habitos-autogestao",
+      "order": 3,
+      "title": "Disciplina, Hábitos e Autogestão",
+      "description": "Sistemas pessoais de consistência, domínio próprio e organização de rotinas.",
+      "status": "planned",
+      "lessonCount": 12,
+      "dataPath": ""
+    },
+    {
+      "id": "modulo-4-inteligencia-emocional-resiliencia",
+      "order": 4,
+      "title": "Inteligência Emocional e Resiliência",
+      "description": "Regulação emocional, resiliência, maturidade afetiva e enfrentamento de pressões.",
+      "status": "planned",
+      "lessonCount": 12,
+      "dataPath": ""
+    },
+    {
+      "id": "modulo-5-comunicacao-relacionamentos-influencia",
+      "order": 5,
+      "title": "Comunicação, Relacionamentos e Influência",
+      "description": "Escuta, comunicação assertiva, conflitos, vínculos e influência ética.",
+      "status": "planned",
+      "lessonCount": 12,
+      "dataPath": ""
+    },
+    {
+      "id": "modulo-6-financas-trabalho-mordomia",
+      "order": 6,
+      "title": "Finanças, Trabalho e Mordomia",
+      "description": "Administração de recursos, trabalho, contentamento, generosidade e prudência.",
+      "status": "planned",
+      "lessonCount": 12,
+      "dataPath": ""
+    },
+    {
+      "id": "modulo-7-lideranca-servidora-equipes",
+      "order": 7,
+      "title": "Liderança Servidora e Desenvolvimento de Equipes",
+      "description": "Caráter, serviço, feedback, mentoria, delegação e cultura de equipe.",
+      "status": "planned",
+      "lessonCount": 12,
+      "dataPath": ""
+    },
+    {
+      "id": "modulo-8-produtividade-tempo-execucao",
+      "order": 8,
+      "title": "Produtividade, Gestão do Tempo e Execução",
+      "description": "Prioridades, foco, agenda, execução, revisão e gestão de energia.",
+      "status": "planned",
+      "lessonCount": 12,
+      "dataPath": ""
+    },
+    {
+      "id": "modulo-9-chamado-missao-impacto-legado",
+      "order": 9,
+      "title": "Chamado, Missão, Impacto e Legado",
+      "description": "Vocação, missão pessoal, impacto, generatividade e legado.",
+      "status": "planned",
+      "lessonCount": 12,
+      "dataPath": ""
+    },
+    {
+      "id": "modulo-10-projeto-final-transformacao-integral",
+      "order": 10,
+      "title": "Projeto Final de Transformação Integral",
+      "description": "Síntese prática da jornada em planos integrados de transformação.",
+      "status": "planned",
+      "lessonCount": 12,
+      "dataPath": ""
+    }
+  ]
+}

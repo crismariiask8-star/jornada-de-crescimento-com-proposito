@@ -1,0 +1,31 @@
+{
+  "id": "projeto-final-transformacao-integral",
+  "title": "Projeto Final de Transformação Integral",
+  "description": "Estrutura preparada para consolidar os planos finais do aluno.",
+  "sections": [
+    {
+      "id": "plano-vida",
+      "title": "Plano de Vida"
+    },
+    {
+      "id": "plano-desenvolvimento",
+      "title": "Plano de Desenvolvimento Pessoal"
+    },
+    {
+      "id": "plano-financeiro",
+      "title": "Plano Financeiro"
+    },
+    {
+      "id": "plano-habitos",
+      "title": "Plano de Hábitos"
+    },
+    {
+      "id": "plano-espiritual",
+      "title": "Plano de Crescimento Espiritual"
+    },
+    {
+      "id": "plano-legado",
+      "title": "Plano de Legado"
+    }
+  ]
+}

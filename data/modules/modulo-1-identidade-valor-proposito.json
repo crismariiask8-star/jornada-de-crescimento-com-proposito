@@ -1,0 +1,42 @@
+{
+  "id": "modulo-1-identidade-valor-proposito",
+  "order": 1,
+  "title": "Identidade, Valor e Propósito",
+  "description": "Fundamentos de identidade, dignidade humana, narrativa pessoal e direção de vida.",
+  "objective": "Estabelecer a base de identidade e valor pessoal que sustentará a jornada de crescimento integral.",
+  "estimatedHours": 12,
+  "assessmentQuizId": "avaliacao-modulo-1",
+  "lessons": [
+    {
+      "id": "aula-1-identidade-alem-performance",
+      "order": 1,
+      "title": "Identidade além da performance",
+      "objective": "Diferenciar identidade pessoal de desempenho, aprovação externa e produtividade.",
+      "summary": "Aula demonstrativa para validar o modelo JSON, o carregamento dinâmico, o progresso, as anotações, favoritos e quiz por aula.",
+      "content": {
+        "main": "Conteúdo de exemplo. Esta área foi desenhada para receber futuramente a aula completa em blocos estruturados, sem alterar o código principal da plataforma.",
+        "caseStudy": {
+          "title": "Caso demonstrativo",
+          "problem": "Um aluno percebe que mede seu valor apenas pelo resultado profissional.",
+          "analysis": "O sistema deve exibir este caso como parte do conteúdo estruturado da aula.",
+          "solution": "A aula orienta o aluno a separar valor pessoal de performance e registrar uma ação prática."
+        },
+        "exercises": [
+          "Liste três situações em que você associa valor pessoal a desempenho.",
+          "Identifique uma decisão recente influenciada por busca de aprovação."
+        ],
+        "challenge": "Durante a semana, observe uma situação em que você tentaria provar valor por performance e registre uma resposta alternativa."
+      },
+      "bibliography": [
+        {
+          "title": "O chamado de uma vida com propósito",
+          "author": "Tema de referência",
+          "type": "Livro"
+        }
+      ],
+      "biblicalReferences": ["Gênesis 1:26-27", "Efésios 2:10", "Salmo 139:13-16"],
+      "quizId": "quiz-aula-1-identidade-performance",
+      "tags": ["identidade", "valor", "performance", "propósito"]
+    }
+  ]
+}

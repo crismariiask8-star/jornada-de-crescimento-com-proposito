@@ -1,0 +1,30 @@
+{
+  "id": "quiz-aula-1-identidade-performance",
+  "title": "Quiz — Identidade além da performance",
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "prompt": "Qual é o foco central da aula demonstrativa?",
+      "options": [
+        "Separar identidade de performance",
+        "Aumentar produtividade a qualquer custo",
+        "Substituir propósito por metas financeiras",
+        "Criar uma rotina devocional simples"
+      ],
+      "answer": "Separar identidade de performance"
+    },
+    {
+      "id": "q2",
+      "type": "true-false",
+      "prompt": "A plataforma deve conseguir carregar aulas futuras por JSON sem alterar o código principal.",
+      "answer": true
+    },
+    {
+      "id": "q3",
+      "type": "reflection",
+      "prompt": "Em uma frase, registre um sinal de que alguém está confundindo valor pessoal com desempenho."
+    }
+  ]
+}

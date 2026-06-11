@@ -1,0 +1,7 @@
+{
+  "id": "certificado-jornada-crescimento-proposito",
+  "title": "Certificado de Conclusão",
+  "courseName": "Jornada de Crescimento com Propósito",
+  "requirements": ["allLessonsCompleted", "finalExamApproved", "finalProjectCompleted"],
+  "issuer": "Jornada de Crescimento com Propósito"
+}
